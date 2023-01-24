@@ -1,6 +1,5 @@
-import React from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import Forum from './routes/Forum';
 import Create from './routes/Create';
@@ -16,7 +15,7 @@ function App() {
         <Route path="forum/">
           <Route index element={<Forum />} />
           <Route path="create" element={<Create />} />
-          <Route path="viewpost" element={<ViewPost />} />
+          <Route path={`/forum/:postId`} element={<ViewPost />} />
         </Route>
       </Route>
       <Route path="*" element={<NoPage />} />

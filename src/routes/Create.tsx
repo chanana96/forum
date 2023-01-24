@@ -5,23 +5,17 @@ import axios from 'axios';
 function Create() {
   const [post, setPost] = useState({ Title: '', Post: '' });
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
-      event.preventDefault();
       const response = await axios.post(
         'http://localhost:5000/forum/create/post/',
-        JSON.stringify(post),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
+        post
       );
     } catch (error) {
       console.log(error);
     }
   };
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPost((prevPost) => ({ ...prevPost, [e.target.name]: value }));
   };

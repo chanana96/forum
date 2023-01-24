@@ -18,17 +18,34 @@ const config = {
   trustServerCertificate: true,
 };
 
-app.post('/forum/create/post', (req: any, res: any) => {
-  const { post } = req.body;
-  sql.connect(config, function (err: any) {
+app.get('/forum/get', async (req: any, res: any) => {
+  try {
+    await sql.connect(config);
+    var request = new sql.Request();
+    const data = await request.query(`select * from dbo.forumPost`);
+    res.status(200).send(data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// app.get('/forum/:PostId', async (req:any, res:any) => {
+
+// })
+
+app.post('/forum/create/post', async (req: any, res: any) => {
+  try {
+    const post = req.body;
+    await sql.connect(config);
     var request = new sql.Request();
     request.query(
-      `INSERT INTO dbo.ForumPost (Title, Post, PostId) VALUES ('test', 'test2', 3)`,
-      function (err: any) {
-        console.log(err);
-      }
+      `INSERT INTO dbo.ForumPost (Title, Post, PostId) VALUES ('${
+        post.Title
+      }', '${post.Post}', ${Math.round(Math.random() * 10000)})`
     );
-  });
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 app.listen(process.env.PORT || 5000, () => {

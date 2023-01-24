@@ -1,11 +1,11 @@
 import React from 'react';
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+type ViewPostPageParams = { postId: string };
 function ViewPost() {
+  const { postId } = useParams<ViewPostPageParams>();
   return (
     <div>
-      <p>view post</p>
+      <p>asdf</p>
     </div>
   );
 }
