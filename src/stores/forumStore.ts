@@ -3,6 +3,7 @@ import axios from 'axios';
 
 interface Post {
   post: string;
+  PostId: String;
 }
 
 class ForumStore {
@@ -15,10 +16,13 @@ class ForumStore {
     try {
       const response = await axios.get('http://localhost:5000/forum/get');
       this.posts = response.data.recordset;
-      console.log('posts: ' + this.posts);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  @action deletePost = async (id: string) => {
+    this.posts = this.posts.filter((e) => e.PostId !== id);
   };
 }
 

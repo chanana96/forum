@@ -1,19 +1,22 @@
 import { Outlet, Link } from 'react-router-dom';
 
+import { Menu } from 'antd';
+const { Item } = Menu;
+
 const Layout = () => {
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/forum">Forum</Link>
-          </li>
-        </ul>
-      </nav>
-
+      <Menu mode="horizontal">
+        <Item key="home">
+          <Link to="/">Home</Link>
+        </Item>
+        <Item key="forum">
+          <Link to="/forum">Forum</Link>
+        </Item>
+        <Item key="create">
+          <Link to="/forum/create">Create</Link>
+        </Item>
+      </Menu>
       <Outlet />
     </>
   );

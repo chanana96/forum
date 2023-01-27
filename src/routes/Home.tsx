@@ -1,11 +1,11 @@
-import React from 'react';
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import ThreeCube from './ThreeCube';
+const THREE = require('three');
 
 function Home() {
   return (
     <div>
-      <p>a</p>
+      <ThreeCube />
     </div>
   );
 }
